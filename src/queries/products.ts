@@ -8,9 +8,7 @@ export function useAvailableProducts() {
   return useQuery<AvailableProduct[], AxiosError>(
     "available-products",
     async () => {
-      const res = await axios.get<AvailableProduct[]>(
-        `${API_PATHS.gateway}/products`
-      );
+      const res = await axios.get<AvailableProduct[]>(`${API_PATHS.products}`);
       return res.data;
     }
   );
@@ -29,7 +27,7 @@ export function useAvailableProduct(id?: string) {
     ["product", { id }],
     async () => {
       const res = await axios.get<AvailableProduct>(
-        `${API_PATHS.gateway}/products/${id}`
+        `${API_PATHS.products}/${id}`
       );
       return res.data;
     },
@@ -48,7 +46,7 @@ export function useRemoveProductCache() {
 
 export function useUpsertAvailableProduct() {
   return useMutation((values: AvailableProduct) =>
-    axios.post<AvailableProduct>(`${API_PATHS.gateway}/products`, values)
+    axios.post<AvailableProduct>(`${API_PATHS.products}`, values)
   );
 }
 
