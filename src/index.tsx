@@ -19,6 +19,9 @@ if (import.meta.env.DEV) {
   worker.start({ onUnhandledRequest: "bypass" });
 }
 
+const authToken = window.btoa("holhen:TEST_PASSWORD");
+localStorage.setItem("authToken", `Basic ${authToken}`);
+
 const container = document.getElementById("app");
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const root = createRoot(container!);
